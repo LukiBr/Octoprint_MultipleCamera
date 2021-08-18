@@ -1,5 +1,6 @@
 # Octoprint_MultipleCamera
 
+How to Install:
 
 Kameraport herausfinden
 
@@ -27,20 +28,22 @@ Konfigurationsdateien anpassen (Kameraport, Auflösung und Kameraoptionen anpass
 sudo nano octopi-cam2.txt
 
 ### Additional options to supply to MJPG Streamer for the USB camera
-# hier zuvor ermittelte Videoquelle wählen /video2 ggf. ersetzen (rot)
+# hier zuvor ermittelte Videoquelle wählen /video2 ggf. ersetzen -->siehe Quellport ls /dev |grep "video"
 camera_usb_options="-r 1280x720 -f 30 -d /dev**/video2"**
 
 ### Configuration of camera HTTP output
 camera_http_webroot="./www"
+# Port anpassen
 camera_http_options="-p 8081"
 
 sudo nano octopi-cam3.txt
 ### Additional options to supply to MJPG Streamer for the USB camera
-# hier zuvor ermittelte Videoquelle wählen /video2 ggf. ersetzen (rot)
+# hier zuvor ermittelte Videoquelle wählen /video3 ggf. ersetzen -->siehe Quellport ls /dev |grep "video"
 camera_usb_options="-r 1280x720 -f 30 -d /dev**/video3"**
 
 ### Configuration of camera HTTP output
 camera_http_webroot="./www"
+# Port anpassen
 camera_http_options="-p 8082"
 ```
 
@@ -50,6 +53,7 @@ sudo nano webcam2d
 
 # Folgende Zeile anpassen
 cfg_files=()
+# neue Konfigdatei setzen
 cfg_files+=/boot/octopi-cam2.txt
 if [[ -d ${config_dir} ]]; then
   cfg_files+=( `ls ${config_dir}/*.txt` )
@@ -59,6 +63,7 @@ cd /root/bin
 sudo nano webcam3d
 # Folgende Zeile anpassen
 cfg_files=()
+# neue Konfigdatei setzen
 cfg_files+=/boot/octopi-cam3.txt
 if [[ -d ${config_dir} ]]; then
   cfg_files+=( `ls ${config_dir}/*.txt` )
